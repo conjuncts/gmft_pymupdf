@@ -5,7 +5,7 @@ Use [pymupdf](https://github.com/pymupdf/PyMuPDF) with [gmft](https://github.com
 ## Installation
 
 ```bash
-pip install git+https://github.com/conjuncts/gmft_pymupdf
+pip install git+https://github.com/conjuncts/gmft_pymupdf.git
 ```
 
 ## Usage
@@ -24,3 +24,7 @@ for page in doc:
     tables += detector.extract(page)
 
 ```
+
+## License
+
+gmft_pymupdf is licensed under AGPL-3.0, in accordance with PyMuPDF's AGPL-3.0 license.
