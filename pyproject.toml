@@ -1,0 +1,29 @@
+[project]
+name = "gmft_pymupdf"
+version = "0.0.1"
+description = "Use pymupdf with gmft"
+authors = [
+  {name = "conjunct"}
+]
+license = {text = "AGPL-3.0"}
+readme = "README.md"
+requires-python = ">=3.6"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+  "gmft",
+  "pymupdf"
+]
+
+[project.urls]
+Homepage = "https://github.com/conjuncts/gmft_pymupdf"
+Issues = "https://github.com/conjuncts/gmft_pymupdf/issues"
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.4,<4"]
+
