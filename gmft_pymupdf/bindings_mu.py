@@ -39,6 +39,21 @@ class PyMuPDFPage(BasePage):
         
         img = pixmap_to_PIL(self.page.get_pixmap(dpi=dpi, clip=None if rect is None else rect.bbox))
         return img
+    
+    def _get_text(self) -> str:
+        """Ability to reconstruct the page, with line breaks, on a word-by-word basis.
+        This is useful for selectively replacing certain text with other text."""
+        result = ""
+        for x0, y0, x1, y1, word, blockno, lineno, wordno in self.page.get_text('words'):
+            # if prev_block != blockno:
+            #     prev_block = blockno
+            #     result += "\n\n"
+            if wordno == 0:
+                result += "\n"
+            else:
+                result += ' '
+            result += word
+        return result.lstrip()
 
 class PyMuPDFDocument(BasePDFDocument):
     
