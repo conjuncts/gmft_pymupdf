@@ -32,6 +32,14 @@ class PyMuPDFPage(BasePage):
         for word in self.page.get_text("words"):
             yield word[:5]
     
+    def get_positions_and_text_mu(self) -> Generator[tuple[float, float, float, float, str, int, int, int], None, None]:
+        """
+        Returns positions and text with mu's additional annotations: blockno, lineno, wordno.
+        
+        Each tuple should be: (x0, y0, x1, y1, word, blockno, lineno, wordno)
+        """
+        yield from self.page.get_text("words")
+    
     def get_filename(self) -> str:
         return self.page.parent.name
     
@@ -44,7 +52,8 @@ class PyMuPDFPage(BasePage):
         """Ability to reconstruct the page, with line breaks, on a word-by-word basis.
         This is useful for selectively replacing certain text with other text."""
         result = ""
-        for x0, y0, x1, y1, word, blockno, lineno, wordno in self.page.get_text('words'):
+        # for x0, y0, x1, y1, word, blockno, lineno, wordno in self.page.get_text('words'):
+        for x0, y0, x1, y1, word, blockno, lineno, wordno in self.get_positions_and_text_mu():
             # if prev_block != blockno:
             #     prev_block = blockno
             #     result += "\n\n"
