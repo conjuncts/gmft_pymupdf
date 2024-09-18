@@ -40,6 +40,8 @@ class PyMuPDFPage(BasePage):
         """
         yield from self.page.get_text("words")
     
+    _get_positions_and_text_and_breaks = get_positions_and_text_mu
+    
     def get_filename(self) -> str:
         return self.page.parent.name
     
