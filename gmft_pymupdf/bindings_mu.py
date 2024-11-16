@@ -68,8 +68,37 @@ class PyMuPDFPage(BasePage):
 
 class PyMuPDFDocument(BasePDFDocument):
     
-    def __init__(self, filename: str):
-        self.doc = pymupdf.open(filename)
+    def __init__(self, filename: str, *args, **kwargs):
+        """
+        Creates a PyMuPDF document, with the same arguments as https://pymupdf.readthedocs.io/en/latest/document.html#document
+
+        To create a memory document, set filename to None and refer to PyMuPDF's documentation.
+        Example:
+        ```
+        
+        # from a file
+        doc = pymupdf.open("some.xps")
+        # handle wrong extension
+        doc = pymupdf.open("some.file", filetype="xps")
+
+        # from memory, filetype is required if not a PDF
+        doc = pymupdf.open("xps", mem_area)
+        doc = pymupdf.open(None, mem_area, "xps")
+        doc = pymupdf.open(stream=mem_area, filetype="xps")
+
+        # new empty PDF
+        doc = pymupdf.open()
+        doc = pymupdf.open(None)
+        doc = pymupdf.open("")
+
+        ```
+
+        :param filename: PDF filename
+        :param args: Additional positional arguments
+        :param kwargs: Additional keyword arguments
+
+        """
+        self.doc = pymupdf.open(filename, *args, **kwargs)
         self.filename = filename
     
     def get_page(self, n: int) -> BasePage:
