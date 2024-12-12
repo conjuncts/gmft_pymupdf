@@ -16,7 +16,7 @@ from gmft_pymupdf import PyMuPDFDocument
 doc = PyMuPDFDocument("path/to/pdf")
 
 # gmft remains unchanged
-from gmft import TableDetector
+from gmft.auto import TableDetector
 detector = TableDetector()
 
 tables = []
